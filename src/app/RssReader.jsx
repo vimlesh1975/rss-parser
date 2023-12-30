@@ -5,12 +5,10 @@ import { feedUrls } from './feedUrls'
 const RssReader = () => {
     const [feedListing, setFeedListing] = useState([])
     const [feedUrl, setfeedUrl] = useState('https://www.hindusthansamachar.in/Regional/HASM/HASM.rss');
-
     const getRSSFeed = async(url1) => {
         const postData = {
             query: url1,
           };
-    
           const response = await fetch('/api/getRSSFeed', {
             method: 'POST',
             headers: {
@@ -19,10 +17,7 @@ const RssReader = () => {
             body: JSON.stringify(postData),
           })
           const jsonData = await response.json();
-        
-            console.log(jsonData)
             setFeedListing(jsonData.items)
-       
     }
 
     useEffect(() => {
